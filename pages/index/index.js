@@ -4,9 +4,10 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
+    userId: null,
     hasUserInfo: false,
+    hasShaerId: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -15,8 +16,20 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
-    console.log(222);
+  onLoad: function (options) {
+    console.log(options);
+    if (options.userId) {
+      console.log(options.userId);
+      this.setData({
+        hasShaerId: true,
+        userId: options.userId
+      })
+    } else {
+      this.setData({
+        hasShaerId: false,
+        userId: null
+      })
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -32,7 +45,6 @@ Page({
         })
       }
     } else {
-      console.log(1231);
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
@@ -47,10 +59,25 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+    if (e.detail.userInfo) {
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      })
+      wx.redirectTo({
+        url: '../yearlist/yearlist?userId=' + e.detail.userInfo.nickName
+      })
+    } else {
+      wx.showToast({
+        title: '授权失败',
+        icon: 'none'
+      })
+    }
+  },
+  goYearList: function() {
+    wx.redirectTo({
+      url: '../yearlist/yearlist?userId=' + this.data.userId
     })
   }
 })

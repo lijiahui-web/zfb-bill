@@ -1,13 +1,12 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取用户头像 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+    </block> -->
+    <button class="goYearList" wx:if="{{hasShaerId}}" bindtap="goYearList"> 开启分享用户的年度报告 </button>
+    <button class="goYearList" open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:else> 开启我的年度报告 </button>
   </view>
 </view>

@@ -1,0 +1,7 @@
+<view class="container">
+  <view>
+    <button open-type='share'>分享</button>
+    <view>{{currentTime}}</view>
+    <text class="user-text">{{userText}}</text>
+  </view>
+</view>

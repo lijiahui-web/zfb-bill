@@ -1,0 +1,4 @@
+.container {
+  background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1578395827701&di=414e2306687808e225d3931de1c3d05a&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fwallpaper%2F1212%2F30%2Fc2%2F17010201_1356858965139_320x480.jpg") no-repeat;
+  background-size: 100% 100%;
+}
