@@ -1,7 +1,27 @@
-<view class="container">
-  <view>
-    <button open-type='share'>分享</button>
-    <view>{{currentTime}}</view>
-    <text class="user-text">{{userText}}</text>
-  </view>
+<view class="container container-fill">
+  <view class="scroll-fullpage" bindtouchstart="scrollTouchstart" bindtouchmove="scrollTouchmove" bindtouchend="scrollTouchend" style="transform:translateY(-{{scrollindex*100}}%);margin-top: {{margintop}}px">
+		<view class="section section01 {{scrollindex==0?'active':''}}" style="background: #3399FF;">
+			<button open-type='share' class="share-btn">分享</button>
+      <view class="section-maintitle">{{currentTime}}</view>
+      <text class="section-subtitle">{{userText}}</text>
+      <image src="https://t7.baidu.com/it/u=1179872664,290201490&fm=79&app=86&f=JPEG?w=1280&h=854" class="test-img"></image>
+      <button bindtap="saveImg" class="share-btn">保存图片</button>
+		</view>
+		<view class="section section02 {{scrollindex==1?'active':''}}" style="background: #00CC66;">
+			<text class="section-maintitle">测试测试测试2</text>
+			<text class="section-subtitle">cinoLiu--2</text>
+		</view>
+		<view class="section section03 {{scrollindex==2?'active':''}}" style="background: #33CCCC;">
+			<text class="section-maintitle">测试测试测试3</text>
+			<text class="section-subtitle">cinoLiu--3</text>
+		</view>
+		<view class="section section04 {{scrollindex==3?'active':''}}" wx:if="{{hasPage4}}" style="background: #6699FF;">
+			<text class="section-maintitle">测试测试测试4</text>
+			<text class="section-subtitle">cinoLiu--4</text>
+		</view>
+		<view class="section section05 {{scrollindex==4?'active':''}}" style="background: #9966FF;">
+			<text class="section-maintitle">测试测试测试5</text>
+			<text class="section-subtitle">cinoLiu--5</text>
+		</view>
+	</view>
 </view>
