@@ -3,24 +3,10 @@
   background: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1578395463802&di=00cef7c3d69a098ced50a0492c7f5287&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201509%2F28%2F20150928003730_rnHzR.jpeg") no-repeat;
   background-size: 100% 100%;
 }
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
 
 .goYearList {
   width: 240px;
   margin-top: 20px;
+  background: #3888ff;
+  color: #ffffff;
 }

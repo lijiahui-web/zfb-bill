@@ -1,11 +1,16 @@
 <view class="container container-fill">
   <view class="scroll-fullpage" bindtouchstart="scrollTouchstart" bindtouchmove="scrollTouchmove" bindtouchend="scrollTouchend" style="transform:translateY(-{{scrollindex*100}}%);margin-top: {{margintop}}px">
 		<view class="section section01 {{scrollindex==0?'active':''}}" style="background: #3399FF;">
-			<button open-type='share' class="share-btn">分享</button>
-      <view class="section-maintitle">{{currentTime}}</view>
-      <text class="section-subtitle">{{userText}}</text>
-      <image src="https://t7.baidu.com/it/u=1179872664,290201490&fm=79&app=86&f=JPEG?w=1280&h=854" class="test-img"></image>
-      <button bindtap="saveImg" class="share-btn">保存图片</button>
+			<view class="sectionContent" wx:if="{{longitude != null}}">
+				<text wx:if="{{name == null}}">您目前所处位置为</text>
+				<text wx:else>选择位置为{{name}}</text>
+				<text wx:if="{{address != null}}">{{address}}</text>
+				<text>东经{{longitude}}度，北纬{{latitude}}度</text>
+				<text wx:if="{{name == null}}">所处高度为{{accuracy}}米</text>
+				<text wx:if="{{name == null}}">当前移动速度为{{speed}}m/s</text>
+				<button bindtap="selecteLocation" class="sectionBtn"> 选择查看位置经纬度 </button>
+			</view>
+			<button bindtap="getLocation" class="sectionBtn" wx:else> 获取当前位置 </button>
 		</view>
 		<view class="section section02 {{scrollindex==1?'active':''}}" style="background: #00CC66;">
 			<text class="section-maintitle">测试测试测试2</text>
@@ -20,8 +25,11 @@
 			<text class="section-subtitle">cinoLiu--4</text>
 		</view>
 		<view class="section section05 {{scrollindex==4?'active':''}}" style="background: #9966FF;">
-			<text class="section-maintitle">测试测试测试5</text>
-			<text class="section-subtitle">cinoLiu--5</text>
+			<button open-type='share' class="share-btn">分享</button>
+      <view class="section-maintitle">{{currentTime}}</view>
+      <text class="section-subtitle">{{userText}}</text>
+      <image src="https://t7.baidu.com/it/u=1179872664,290201490&fm=79&app=86&f=JPEG?w=1280&h=854" class="test-img"></image>
+      <button bindtap="saveImg" class="share-btn">保存图片</button>
 		</view>
 	</view>
 </view>

@@ -5,6 +5,12 @@ Page({
   data: {
     animationData: {},
     userId: null,
+    name: null,
+    address: null,
+    latitude: null,
+    longitude: null,
+    speed: null,
+    altitude: null,
     userText: '',
     currentTime: '',
     scrollindex:0,  //当前页面的索引值
@@ -27,6 +33,38 @@ Page({
     var value = util.formatTime(new Date())
     this.setData({
       currentTime: value
+    })
+  },
+  getLocation: function() {
+    let that = this
+    wx.getLocation({
+      type: 'wgs84',
+      success (res) {
+        if (res.speed <= 0) {
+          res.speed = 0
+        }
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+          speed: res.speed,
+          accuracy: res.accuracy
+        })
+      }
+    })
+  },
+  selecteLocation: function() {
+    let that = this
+    wx.chooseLocation({
+      latitude: '',
+      longitude: '',
+      success (res) {
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+          name: res.name,
+          address: res.address
+        })
+      }
     })
   },
   scrollTouchstart: function(e) {

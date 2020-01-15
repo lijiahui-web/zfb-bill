@@ -12,6 +12,17 @@
 }
 .section{
 	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.sectionContent text{
+	display: block;
+	margin: 10px 0;
+	text-align: center;
+}
+.sectionBtn {
+	margin: 20px auto;
 }
 .section-maintitle{
 	display: block;
