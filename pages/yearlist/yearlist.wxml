@@ -11,6 +11,7 @@
 				</view>
 				<button bindtap="makeCall" class="sectionBtn"> 呼叫 </button>
 			</view>
+			<text class="moveTips">向上滑动</text>
 		</view>
 		<view class="section section02 {{scrollindex==1?'active':''}}" style="background: #00CC66;">
 			<view class="sectionContent" wx:if="{{level != null}}">
@@ -18,6 +19,7 @@
 				<text wx:if="isCharging">充电中</text>
 			</view>
 			<button bindtap="getBattery" class="sectionBtn" wx:else> 获取当前电量信息 </button>
+			<text class="moveTips">向上滑动</text>
 		</view>
 		<view class="section section03 {{scrollindex==2?'active':''}}" style="background: #33CCCC;">
 			<view class="sectionContent">
@@ -26,6 +28,7 @@
 						<slider bindchange="sliderChange" activeColor="red" show-value/>
 				</view>
 			</view>
+			<text class="moveTips">向上滑动</text>
 		</view>
 		<view class="section section04 {{scrollindex==3?'active':''}}" wx:if="{{hasPage4}}" style="background: #6699FF;">
 			<view class="sectionContent" wx:if="{{longitude != null}}">
@@ -38,6 +41,7 @@
 				<button bindtap="selecteLocation" class="sectionBtn"> 选择查看位置经纬度 </button>
 			</view>
 			<button bindtap="getLocation" class="sectionBtn" wx:else> 获取当前位置 </button>
+			<text class="moveTips">向上滑动</text>
 		</view>
 		<view class="section section05 {{scrollindex==4?'active':''}}" style="background: #9966FF;">
 			<view class="sectionContent">
@@ -47,6 +51,7 @@
 				<image src="https://t7.baidu.com/it/u=1179872664,290201490&fm=79&app=86&f=JPEG?w=1280&h=854" class="test-img"></image>
 				<button bindtap="saveImg" class="share-btn">保存图片</button>
 			</view>
+			<text class="moveTips">到底了，别划了，想要啥我接着做</text>
 		</view>
 	</view>
 </view>
