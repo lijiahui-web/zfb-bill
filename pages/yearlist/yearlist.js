@@ -5,14 +5,17 @@ Page({
   data: {
     animationData: {},
     userId: null,
-    name: null,
-    address: null,
-    latitude: null,
-    longitude: null,
-    speed: null,
-    altitude: null,
-    userText: '',
-    currentTime: '',
+    phoneValue: null, //输入的电话号
+    level: null,  //设备电量
+    isCharging: null, //是否充电中
+    name: null, //所选位置名称
+    address: null,  //所选位置详细地址
+    latitude: null, //东西经纬度
+    longitude: null,  //南北经纬度
+    speed: null,  //当前移动速度
+    altitude: null, //当前位置高度
+    userText: '', //用户微信名
+    currentTime: '',  //当前时间
     scrollindex:0,  //当前页面的索引值
     totalnum:5,  //总共页面数
     starty:0,  //开始的位置x
@@ -22,17 +25,48 @@ Page({
     hasPage4: true
   },
   onLoad: function (options) {
-    console.log(options);
     if (options.userId) {
       console.log(options.userId);
       this.setData({
         userId: options.userId,
-        userText: 'id为' + options.userId + '用户'
+        userText: options.userId
       })
     }
     var value = util.formatTime(new Date())
     this.setData({
       currentTime: value
+    })
+  },
+  bindKeyInput: function(e) {
+    this.setData({
+      phoneValue: e.detail.value
+    })
+  },
+  makeCall: function() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.phoneValue,
+    })
+  },
+  sliderChange: function(e) {
+    wx.setScreenBrightness({
+      value: e.detail.value / 100
+    })
+  },
+  getBattery: function() {
+    let that = this
+    wx.getBatteryInfo({
+      fail: (res) => {
+        wx.showToast({
+          title: '获取失败',
+          icon: 'none'
+        })
+      },
+      success: (result) => {
+        that.setData({
+          level: result.level,
+          isCharging: result.isCharging
+        })
+      },
     })
   },
   getLocation: function() {
@@ -49,6 +83,12 @@ Page({
           speed: res.speed,
           accuracy: res.accuracy
         })
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '获取失败',
+          icon: 'none'
+        })
       }
     })
   },
@@ -63,6 +103,12 @@ Page({
           longitude: res.longitude,
           name: res.name,
           address: res.address
+        })
+      },
+      fail: (res) => {
+        wx.showToast({
+          title: '获取失败',
+          icon: 'none'
         })
       }
     })

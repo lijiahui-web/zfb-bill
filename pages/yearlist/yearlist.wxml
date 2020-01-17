@@ -1,6 +1,33 @@
 <view class="container container-fill">
   <view class="scroll-fullpage" bindtouchstart="scrollTouchstart" bindtouchmove="scrollTouchmove" bindtouchend="scrollTouchend" style="transform:translateY(-{{scrollindex*100}}%);margin-top: {{margintop}}px">
 		<view class="section section01 {{scrollindex==0?'active':''}}" style="background: #3399FF;">
+			<view class="sectionContent">
+				<view class="page-section">
+					<view class="weui-cells weui-cells_after-title">
+						<view class="weui-cell weui-cell_input">
+							<input class="weui-input" type="number" bindinput="bindKeyInput" maxlength="11" placeholder="输入要拨打的电话" />
+						</view>
+					</view>
+				</view>
+				<button bindtap="makeCall" class="sectionBtn"> 呼叫 </button>
+			</view>
+		</view>
+		<view class="section section02 {{scrollindex==1?'active':''}}" style="background: #00CC66;">
+			<view class="sectionContent" wx:if="{{level != null}}">
+				<text>当前电量为{{level}}%</text>
+				<text wx:if="isCharging">充电中</text>
+			</view>
+			<button bindtap="getBattery" class="sectionBtn" wx:else> 获取当前电量信息 </button>
+		</view>
+		<view class="section section03 {{scrollindex==2?'active':''}}" style="background: #33CCCC;">
+			<view class="sectionContent">
+				<text class="section__title">调整手机屏幕亮度</text>
+				<view class="body-view">
+						<slider bindchange="sliderChange" activeColor="red" show-value/>
+				</view>
+			</view>
+		</view>
+		<view class="section section04 {{scrollindex==3?'active':''}}" wx:if="{{hasPage4}}" style="background: #6699FF;">
 			<view class="sectionContent" wx:if="{{longitude != null}}">
 				<text wx:if="{{name == null}}">您目前所处位置为</text>
 				<text wx:else>选择位置为{{name}}</text>
@@ -12,24 +39,14 @@
 			</view>
 			<button bindtap="getLocation" class="sectionBtn" wx:else> 获取当前位置 </button>
 		</view>
-		<view class="section section02 {{scrollindex==1?'active':''}}" style="background: #00CC66;">
-			<text class="section-maintitle">测试测试测试2</text>
-			<text class="section-subtitle">cinoLiu--2</text>
-		</view>
-		<view class="section section03 {{scrollindex==2?'active':''}}" style="background: #33CCCC;">
-			<text class="section-maintitle">测试测试测试3</text>
-			<text class="section-subtitle">cinoLiu--3</text>
-		</view>
-		<view class="section section04 {{scrollindex==3?'active':''}}" wx:if="{{hasPage4}}" style="background: #6699FF;">
-			<text class="section-maintitle">测试测试测试4</text>
-			<text class="section-subtitle">cinoLiu--4</text>
-		</view>
 		<view class="section section05 {{scrollindex==4?'active':''}}" style="background: #9966FF;">
-			<button open-type='share' class="share-btn">分享</button>
-      <view class="section-maintitle">{{currentTime}}</view>
-      <text class="section-subtitle">{{userText}}</text>
-      <image src="https://t7.baidu.com/it/u=1179872664,290201490&fm=79&app=86&f=JPEG?w=1280&h=854" class="test-img"></image>
-      <button bindtap="saveImg" class="share-btn">保存图片</button>
+			<view class="sectionContent">
+				<button open-type='share' class="share-btn">分享</button>
+				<text>{{currentTime}}</text>
+				<text>{{userText}}</text>
+				<image src="https://t7.baidu.com/it/u=1179872664,290201490&fm=79&app=86&f=JPEG?w=1280&h=854" class="test-img"></image>
+				<button bindtap="saveImg" class="share-btn">保存图片</button>
+			</view>
 		</view>
 	</view>
 </view>
